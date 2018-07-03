@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Hello</title>
+</head>
+<body>
+<form action="" method="get">
+    <input type="text" name="nhietdo" placeholder="...Nhiet do...">
+    <input type="text" name="doam" placeholder="...Do am....">
+    <input type="submit" name="submit">
+    <table>
+        <tr>
+            <td><b>Nhiệt độ</b></td>
+            <td><b>Độ ẩm</b></td>
+        </tr>
+        {% for data in a %}
+        <tr>
+            <td>{{ data.temp }}</td>
+            <td>{{ data.humi }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+
+</form>
+
+</body>
+</html>
