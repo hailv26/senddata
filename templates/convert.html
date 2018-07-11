@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>hex to base4</title>
+</head>
+<body>
+    <form method="post">
+        {% csrf_token %}
+        <label>HEX</label>
+        <input type="text" name="txthex"><br>
+        <label>BASE64</label>
+        <input type="text" name="txtbase64" value="{{ data }}">
+        <br>
+        <input type="submit" name="btnconvert" value="Convert">
+    </form>
+</body>
+</html>

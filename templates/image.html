@@ -1,0 +1,85 @@
+{#<!DOCTYPE html>#}
+{#<html lang="en">#}
+{#<head>#}
+{#    <meta charset="UTF-8">#}
+{#    <title>Title</title>#}
+{#    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>#}
+{#</head>#}
+{#<body>#}
+{#    <form method="post" enctype="multipart/form-data">#}
+{#        {% csrf_token %}#}
+{#        <input id="inputFileToLoad" type="file" name="myfile" onchange="encodeImageFileAsURL();" />#}
+{#        <input type="hidden" name="enc_base" id="enc_base" value="val">#}
+{#        <div id="imgTest"></div>#}
+{#        <button type="submit" >OK</button>#}
+{#                          SCRIPT                          #}
+{#        <script type='text/javascript'>#}
+{#          function encodeImageFileAsURL() {#}
+{#            var filesSelected = document.getElementById("inputFileToLoad").files; //Lay ra cac file duoc upload#}
+{#            if (filesSelected.length > 0) {#}
+{#              var fileToLoad = filesSelected[0];//lay ra file dau tien#}
+{##}
+{#              var fileReader = new FileReader();//tao bien de doc file#}
+{##}
+{#              fileReader.onload = function(fileLoadedEvent) {#}
+{#                var srcData = fileLoadedEvent.target.result; // <--- data: base64//mahoabase64#}
+{##}
+{#                var newImage = document.createElement('img');//tao the img the hien anh#}
+{#                newImage.src = srcData;#}
+{##}
+{#                document.getElementById("imgTest").innerHTML = newImage.outerHTML;//viet them cau lenh html vao the div id=showImage#}
+{#                $("#enc_base").val(document.getElementById("imgTest").innerHTML);//copy the img vao input#}
+{#                alert("Converted Base64 version is " + document.getElementById("imgTest").innerHTML);#}
+{#                console.log("Converted Base64 version is " + document.getElementById("imgTest").innerHTML);#}
+{#              }#}
+{#              fileReader.readAsDataURL(fileToLoad);#}
+{#            }#}
+{#          }#}
+{##}
+{#        </script>#}
+{#    </form>#}
+{#</body>#}
+{#</html>#}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
+</head>
+<body>
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        <input id="inputFileToLoad" type="file" name="myfile" onchange="encodeImageFileAsURL();" />
+        <input type="hidden" name="enc_base" id="enc_base" value="val">
+        <div id="imgTest"></div>
+        <button type="submit" >OK</button>
+{#                          SCRIPT                          #}
+        <script type='text/javascript'>
+          function encodeImageFileAsURL() {
+            var filesSelected = document.getElementById("inputFileToLoad").files;
+            if (filesSelected.length > 0) {
+              var fileToLoad = filesSelected[0];
+
+              var fileReader = new FileReader();
+
+              fileReader.onload = function(fileLoadedEvent) {
+                var srcData = fileLoadedEvent.target.result; // <--- data: base64
+
+                var newImage = document.createElement('img');
+                newImage.src = srcData;
+
+                document.getElementById("imgTest").innerHTML = newImage.outerHTML;
+                $("#enc_base").val(document.getElementById("imgTest").innerHTML);
+{#                alert("Converted Base64 version is " + document.getElementById("imgTest").innerHTML);#}
+{#                console.log("Converted Base64 version is " + document.getElementById("imgTest").innerHTML);#}
+              }
+              fileReader.readAsDataURL(fileToLoad);
+            }
+          }
+
+        </script>
+    </form>
+</body>
+</html>
