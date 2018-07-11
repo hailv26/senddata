@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>datahex</title>
+</head>
+<body>
+
+{% for dataEnc in data  %}
+        <img style="width: 300px;" src='data:image/jpg;base64,{{ dataEnc.img }}' />
+    {% endfor %}
+</body>
+</html>

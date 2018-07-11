@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+{% load static %}
+<head>
+  <!-- Plotly.js -->
+  <script src="{% static 'js/plotly.min.js' %}"></script>
+</head>
+<body>
+  <div id="myDiv"><!-- Plotly chart will be drawn inside this DIV --></div>
+  <script>
+        var trace1 = {
+      x: [1, 2, 3, 4],
+      y: [10, 15, 13, 17],
+      mode: 'lines',
+      name: 'Sensor1'
+    };
+
+    var trace2 = {
+      x: [2, 3, 4, 5],
+      y: [16, 30, 11, 9],
+      mode: 'lines',
+      name: 'Sensor2'
+    };
+
+    var trace3 = {
+      x: [1, 2, 3, 4, 5, 6],
+      y:{{ data }},
+      //y:[1,0,1,0,1,0],
+      //y: [12.2, 9.5, 15, 12, 13, 14],
+      mode: 'lines',
+      name: 'Sensor3'
+    };
+
+    var data = [ trace1, trace2, trace3 ];
+    var layout = {
+      title: 'Nhiệt độ',
+      xaxis: {
+        title: 'Time'
+      },
+      yaxis: {
+        title: 'Temp (°C)'
+      }
+    };
+
+
+    Plotly.newPlot('myDiv', data, layout);
+  </script>
+  <div id="chart" style="width: 80%;height: 500px"></div>
+  <script type="text/javascript">
+    function getData() {
+                return Math.random();
+                //return Date.now();
+            }
+    Plotly.plot('chart',[{
+                y:[getData()],
+                type:'line'
+            }]);
+
+    var cnt = 0;
+            setInterval(function(){ //setInterval thuc hien ham sau mot khoang thoi gian xac dinh va lap lai mai mai
+                Plotly.extendTraces('chart',{ y:[[getData()]]}, [0]);
+                cnt++;
+                if(cnt > 100) {
+                    Plotly.relayout('chart',{
+                        xaxis: {
+                            range: [cnt-100,cnt]
+                        }
+                    });
+                }
+            },1000);
+  </script>
+    <div id="nhietdo" style="width: 80%;height: 500px"></div>
+<script>
+    Plotly.plot('nhietdo',[{
+                x:{{ humi }},
+                y:{{ temp }},
+                type:'line',
+                name:'Temp',
+            }]);
+</script>
+</body>
+</html>

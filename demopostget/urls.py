@@ -20,4 +20,8 @@ from myapp import views
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('',views.loadhome),
+    path('plot',views.plotly),
+    path('chart',views.chart),
+    path('convert',views.convertbase64),
+    path('datahex',views.datahex),
 ]

@@ -13,11 +13,13 @@
         <tr>
             <td><b>Nhiệt độ</b></td>
             <td><b>Độ ẩm</b></td>
+            <td><b>Thời gian</b></td>
         </tr>
         {% for data in a %}
         <tr>
             <td>{{ data.temp }}</td>
             <td>{{ data.humi }}</td>
+            <td>{{ data.time }}</td>
         </tr>
         {% endfor %}
     </table>
